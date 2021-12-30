@@ -5,30 +5,37 @@ using UnityEngine;
 public class CameraRotate : MonoBehaviour
 {
 
-    private float _rotateSpeedX;
-    private float _rotateSpeedY;
-    private float _limitX;
-    private float _eulerAngleX;
-    private float _eulerAngleY;
-
     private void Awake()
     {
-        _rotateSpeedX = 3;
-        _rotateSpeedY = 5;
-        _limitX = 80;
-        _eulerAngleX = 0 ;
-        _eulerAngleY = 0;
+
     }
 
-    public void RatateTo(float mousex,float mousey)
+    void Update()
     {
-        _eulerAngleY += mousex * _rotateSpeedX;
+        RatateTo();
+    }
 
-        _eulerAngleX -= mousey * _rotateSpeedY;
+    public void RatateTo()
+    {
 
-        _eulerAngleX = Mathf.Clamp(_eulerAngleX, -_limitX, _limitX);
+        Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        Vector3 camAngle = this.transform.rotation.eulerAngles;
+        float angleX = camAngle.x - mouseDelta.y;
 
-        this.transform.rotation = Quaternion.Euler(_eulerAngleX, _eulerAngleY, 0);
+        if(angleX < 180)
+        {
+            angleX = Mathf.Clamp(angleX, -10f, 70f);
+        }
+        else
+        {
+            angleX = Mathf.Clamp(angleX, 355f, 361f);
+        }
+
+        
+
+
+        this.transform.rotation = Quaternion.Euler(angleX, camAngle.y + mouseDelta.x, camAngle.z);
+
     }
 
     
