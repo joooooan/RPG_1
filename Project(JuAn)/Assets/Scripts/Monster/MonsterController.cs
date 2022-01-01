@@ -22,6 +22,8 @@ public class MonsterController : MonoBehaviour
     Ray _ray;
 
     private float _currTime;
+
+    [SerializeField]
     private float _limitTime;
 
     // Start is called before the first frame update
@@ -42,7 +44,7 @@ public class MonsterController : MonoBehaviour
 
     void MonsterState()
     {
-        if(_stat.CurrHp <= 0) _monsterState = State.Dead;
+        //if(_stat.CurrHp <= 0) _monsterState = State.Dead;
 
         switch (_monsterState)
         {
@@ -87,9 +89,14 @@ public class MonsterController : MonoBehaviour
 
     private void Search()
     {
-        _currTime += Time.deltaTime;
-
-        if(_currTime > _limitTime) _monsterState = State.Idle;
+       //_currTime += Time.deltaTime;
+       //
+       //if (_currTime > _limitTime)
+       //{
+       //    _monsterState = State.Idle;
+       //    Debug.Log("Search -> Idle ");
+       //    _limitTime = 0;
+       //}
 
         _ray = new Ray(this.transform.position, this.transform.forward);
         Debug.DrawRay(_ray.origin, _ray.direction * 50.0f, Color.red);
@@ -97,14 +104,16 @@ public class MonsterController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(_ray, out hit, 50.0f))
         {
+            Debug.Log(hit.transform.tag);
 
-            if(hit.transform.tag == "Player")
+            if (hit.transform.tag == "Player")
             {
                 _monsterState = State.Finding;
             }
-
-            Debug.Log(hit.transform.name);
+            
         }
+
+
 
     }
 
