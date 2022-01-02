@@ -22,14 +22,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveInit();
+        Move();
     }
 
-    private void MoveInit()
+    private void Move()
     {
         _h = Input.GetAxisRaw("Horizontal");
         _v = Input.GetAxisRaw("Vertical");
 
-        _movement.MoveTo(new Vector3(_h, 0, _v));
+        Vector3 moveVec = new Vector3(_h, 0, _v).normalized;
+
+        _movement.MoveTo(moveVec);
     }
 }

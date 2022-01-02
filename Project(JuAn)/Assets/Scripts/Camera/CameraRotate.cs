@@ -5,10 +5,8 @@ using UnityEngine;
 public class CameraRotate : MonoBehaviour
 {
 
-    private void Awake()
-    {
-
-    }
+    [SerializeField]
+    float _rotSpeed = 05.5f;
 
     void Update()
     {
@@ -18,7 +16,7 @@ public class CameraRotate : MonoBehaviour
     public void RatateTo()
     {
 
-        Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) ;
         Vector3 camAngle = this.transform.rotation.eulerAngles;
         float angleX = camAngle.x - mouseDelta.y;
 
@@ -31,12 +29,7 @@ public class CameraRotate : MonoBehaviour
             angleX = Mathf.Clamp(angleX, 355f, 361f);
         }
 
-        
-
-
         this.transform.rotation = Quaternion.Euler(angleX, camAngle.y + mouseDelta.x, camAngle.z);
 
     }
-
-    
 }
