@@ -1,20 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField]
-    public float _playerSpeed = 5;
 
-
+    private NavMeshAgent _agent;
     private GameObject _playerModel;
     private CharacterController _characterController;
+
+  
 
     private void Awake()
     {
         _characterController = this.GetComponentInChildren<CharacterController>();
-
+        _agent = this.GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -23,12 +24,9 @@ public class Movement : MonoBehaviour
 
     }
 
-    public void MoveTo(Vector3 direction)
+    public void MoveTo(Vector3 point,float speed,float maxspeed)
     {
-
-
-        this.transform.position += direction * _playerSpeed * Time.deltaTime;
-
-        this.transform.LookAt(this.transform.position + direction);
+        _agent.destination = point;
+        _agent.speed = maxspeed * Mathf.Clamp01(speed);
     }
 }

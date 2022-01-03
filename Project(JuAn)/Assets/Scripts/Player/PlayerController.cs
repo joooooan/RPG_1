@@ -1,37 +1,51 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    private float _playerSpeed = 5.0f;
+    public float _playerSpeed = 2.0f;
+
+    [SerializeField]
+    public float _playerMaxSpeed = 4.0f;
 
     private CharacterController _characterController;
     private Movement _movement;
-
-    float _h;
-    float _v;
+    
 
     private void Awake()
     {
         _characterController = this.GetComponentInChildren<CharacterController>();
         _movement = this.GetComponentInChildren<Movement>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
+        Moving();
     }
 
-    private void Move()
+    private bool Moving()
     {
-        _h = Input.GetAxisRaw("Horizontal");
-        _v = Input.GetAxisRaw("Vertical");
+        RaycastHit hit; // Ray에 맞은 놈들 저장한다.
+        if (Physics.Raycast(GetMouseRay(), out hit, 100.0f))
+        {
+            if (Input.GetMouseButtonDown(1) || Input.GetMouseButton(1))
+            {
+                _movement.MoveTo(hit.point, _playerSpeed, _playerMaxSpeed);
+            }
 
-        Vector3 moveVec = new Vector3(_h, 0, _v).normalized;
+            return true;
+        }
 
-        _movement.MoveTo(moveVec);
+        return false;
+    }
+
+    private Ray GetMouseRay()
+    {
+        return Camera.main.ScreenPointToRay(Input.mousePosition);
     }
 }
