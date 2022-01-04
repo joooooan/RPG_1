@@ -55,70 +55,70 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\ExplosiveLLC\Demo Elements\Code\CameraController.cs" />
-     <Compile Include="Assets\ExplosiveLLC\Demo Elements\Code\GUIControls.cs" />
-     <Compile Include="Assets\ExplosiveLLC\Demo Elements\Code\HighJumpTrampoline.cs" />
-     <Compile Include="Assets\ExplosiveLLC\Demo Elements\Code\NoJumpSlime.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\ActionHandler.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Character\Attack.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Character\Cast.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Character\Dodge.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Character\Emote.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Character\EmoteCombat.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Character\Reload.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Character\Shoot.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Character\SlowTime.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Character\Turn.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\InstantActionHandler.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\ClimbLadder.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\Crawl.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\DiveRoll.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\DoubleJump.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\Fall.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\GetHit.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\Idle.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\Jump.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\Knockback.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\Knockdown.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\Move.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\MovementActionHandler.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\Navigation.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\Roll.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\Swim.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Null.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\SimpleActionHandler.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Weapon\Relax.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Weapon\SwitchWeapon.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\AnimationData.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\CoroutineQueue.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\IKHands.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\PerfectLookAt\FABRIKSolver.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\PerfectLookAt\PerfectLookAt.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\PerfectLookAt\PerfectLookAtData.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\PerfectLookAt\PerfectLookAtLegStabilizer.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\RPGCharacterAnimatorEvents.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\RPGCharacterController.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\RPGCharacterInputController.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\RPGCharacterMovementController.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\RPGCharacterNavigationController.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\RPGCharacterWeaponController.cs" />
-     <Compile Include="Assets\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\SetupInputLayers.cs" />
-     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Gravity.cs" />
-     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\PlayerCamera.cs" />
-     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\PlayerInputController.cs" />
-     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\PlayerMachine.cs" />
-     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\PlayerMachineDebug.cs" />
-     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\SimpleStateMachine.cs" />
-     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\BSPTree.cs" />
-     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\BruteForceMesh.cs" />
-     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\SuperCharacterController.cs" />
-     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\SuperCollider.cs" />
-     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\SuperCollisionType.cs" />
-     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\SuperMath.cs" />
-     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\SuperStateMachine.cs" />
-     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\DebugDraw.cs" />
-     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Math3d.cs" />
-     <Compile Include="Assets\PolygonFantasyHeroCharacters\Scripts\CharacterRandomizer.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\Demo Elements\Code\CameraController.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\Demo Elements\Code\GUIControls.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\Demo Elements\Code\HighJumpTrampoline.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\Demo Elements\Code\NoJumpSlime.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\ActionHandler.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Character\Attack.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Character\Cast.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Character\Dodge.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Character\Emote.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Character\EmoteCombat.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Character\Reload.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Character\Shoot.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Character\SlowTime.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Character\Turn.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\InstantActionHandler.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\ClimbLadder.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\Crawl.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\DiveRoll.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\DoubleJump.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\Fall.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\GetHit.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\Idle.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\Jump.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\Knockback.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\Knockdown.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\Move.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\MovementActionHandler.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\Navigation.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\Roll.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Movement\Swim.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Null.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\SimpleActionHandler.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Weapon\Relax.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Weapon\SwitchWeapon.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\AnimationData.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\CoroutineQueue.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\IKHands.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\PerfectLookAt\FABRIKSolver.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\PerfectLookAt\PerfectLookAt.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\PerfectLookAt\PerfectLookAtData.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\PerfectLookAt\PerfectLookAtLegStabilizer.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\RPGCharacterAnimatorEvents.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\RPGCharacterController.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\RPGCharacterInputController.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\RPGCharacterMovementController.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\RPGCharacterNavigationController.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\RPGCharacterWeaponController.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\SetupInputLayers.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\SuperCharacterController\Code\Gravity.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\SuperCharacterController\Code\PlayerCamera.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\SuperCharacterController\Code\PlayerInputController.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\SuperCharacterController\Code\PlayerMachine.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\SuperCharacterController\Code\PlayerMachineDebug.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\SuperCharacterController\Code\SimpleStateMachine.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\BSPTree.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\BruteForceMesh.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\SuperCharacterController.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\SuperCollider.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\SuperCollisionType.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\SuperMath.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\SuperStateMachine.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\SuperCharacterController\SuperCharacterController\DebugDraw.cs" />
+     <Compile Include="Assets\Packages\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Math3d.cs" />
+     <Compile Include="Assets\Packages\PolygonFantasyHeroCharacters\Scripts\CharacterRandomizer.cs" />
      <Compile Include="Assets\Scripts\Camera\FollowCamera.cs" />
      <Compile Include="Assets\Scripts\Monster\MonsterController.cs" />
      <Compile Include="Assets\Scripts\Player\Attack_Player.cs" />
@@ -127,8 +127,8 @@
      <Compile Include="Assets\Scripts\Player\PlayerRotate.cs" />
      <Compile Include="Assets\Scripts\Stat\Stat.cs" />
      <Compile Include="Assets\Scripts\Weapon\Weapon.cs" />
-     <None Include="Assets\PolygonFantasyHeroCharacters\Shaders\POLYGON_CustomCharacters.shader" />
-     <None Include="Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\README.txt" />
+     <None Include="Assets\Packages\PolygonFantasyHeroCharacters\Shaders\POLYGON_CustomCharacters.shader" />
+     <None Include="Assets\Packages\ExplosiveLLC\SuperCharacterController\SuperCharacterController\README.txt" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.32f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
@@ -658,34 +658,34 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.32f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Users/kwonj/OneDrive/문서/GitHub/Unity/Project(JuAn)/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>C:/Users/SGA/Desktop/Project(JuAn)/Unity/Project(JuAn)/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>C:/Users/kwonj/OneDrive/문서/GitHub/Unity/Project(JuAn)/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>C:/Users/SGA/Desktop/Project(JuAn)/Unity/Project(JuAn)/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/kwonj/OneDrive/문서/GitHub/Unity/Project(JuAn)/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>C:/Users/SGA/Desktop/Project(JuAn)/Unity/Project(JuAn)/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/kwonj/OneDrive/문서/GitHub/Unity/Project(JuAn)/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Users/SGA/Desktop/Project(JuAn)/Unity/Project(JuAn)/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>C:/Users/kwonj/OneDrive/문서/GitHub/Unity/Project(JuAn)/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>C:/Users/SGA/Desktop/Project(JuAn)/Unity/Project(JuAn)/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>C:/Users/kwonj/OneDrive/문서/GitHub/Unity/Project(JuAn)/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>C:/Users/SGA/Desktop/Project(JuAn)/Unity/Project(JuAn)/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VisualStudio.Editor">
- <HintPath>C:/Users/kwonj/OneDrive/문서/GitHub/Unity/Project(JuAn)/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+ <HintPath>C:/Users/SGA/Desktop/Project(JuAn)/Unity/Project(JuAn)/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/kwonj/OneDrive/문서/GitHub/Unity/Project(JuAn)/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>C:/Users/SGA/Desktop/Project(JuAn)/Unity/Project(JuAn)/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PlasticSCM.Editor">
- <HintPath>C:/Users/kwonj/OneDrive/문서/GitHub/Unity/Project(JuAn)/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
+ <HintPath>C:/Users/SGA/Desktop/Project(JuAn)/Unity/Project(JuAn)/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/kwonj/OneDrive/문서/GitHub/Unity/Project(JuAn)/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/Users/SGA/Desktop/Project(JuAn)/Unity/Project(JuAn)/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

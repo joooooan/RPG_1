@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
 {
-    [SerializeField]
-    private Transform _player;
 
     [SerializeField]
     [Range(1f,10f)]
@@ -16,6 +14,9 @@ public class FollowCamera : MonoBehaviour
     float _lerpSpeed = 5.0f;
 
     [SerializeField]
+    float _scrollSpeed = 3.5f;
+
+    private Transform _player;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class FollowCamera : MonoBehaviour
     void Update()
     {
         Follow();
+        DistanceControll();
     }
 
     private void Follow()
@@ -39,5 +41,22 @@ public class FollowCamera : MonoBehaviour
 
             Camera.main.transform.localPosition = new Vector3(0, _distance, -_distance);
         }
+    }
+
+    private void DistanceControll()
+    {
+        float value = Input.GetAxis("Mouse ScrollWheel");
+
+        if(value > 0)
+        {
+            _distance -= value * _scrollSpeed;
+
+        }
+        else if (value <0)
+        {
+            _distance -= value * _scrollSpeed;
+        }
+
+        _distance = Mathf.Clamp(_distance, 3.5f, 10f);
     }
 }
