@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private bool _isMove;
     private Vector3 _movePoint;
 
-    private GameObject _weapon;
+    private Weapon _weapon;
 
     private void Awake()
     {
@@ -30,18 +30,17 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Moving();
-
+        Attacking();
         if (_isMove)
         {
             float check = Mathf.Pow((_movePoint.x - this.transform.position.x) + (_movePoint.z - this.transform.position.z), 2);
-            Debug.Log(check);
+            //Debug.Log(check);
 
             if(check <= _movement.Nav_StoppingDistance)
             {
                 _isMove = false;
                 _animator.SetBool("isRun", _isMove);
             }
-
         }
     }
 
@@ -72,8 +71,11 @@ public class PlayerController : MonoBehaviour
 
     private void Attacking()
     {
-        //무기 검사
+        //무기에 따른 애니메이션
+        if(Input.GetMouseButtonDown(0))
+        {
+            _animator.SetTrigger("isAttack");
+            Debug.Log("공격");
+        }
     }
-
-
 }
