@@ -7,23 +7,31 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private float _playerSpeed = 2.0f;
-
-    [SerializeField]
-    private float _playerMaxSpeed = 4.0f;
     
     private Movement _movement;
     private Animator _animator;
+    private Attack_Player _attack;
+
+    [SerializeField]
+    private Weapon _weapon;
 
     private bool _isMove;
-    private Vector3 _movePoint;
+    private bool _isAttack;
 
-    private Weapon _weapon;
+    private float _comboTime;
+    private int _currentCombo;
+
+    RaycastHit _hit;
 
     private void Awake()
     {
         _movement = this.GetComponentInChildren<Movement>();
         _animator = this.GetComponent<Animator>();
+        _attack = this.GetComponent<Attack_Player>();
         _isMove = false;
+        _isAttack = false;
+        _comboTime = 0.2f;
+        _currentCombo = 0;
     }
 
     // Update is called once per frame
@@ -31,37 +39,17 @@ public class PlayerController : MonoBehaviour
     {
         Moving();
         Attacking();
-        if (_isMove)
-        {
-            float check = Mathf.Pow((_movePoint.x - this.transform.position.x) + (_movePoint.z - this.transform.position.z), 2);
-            //Debug.Log(check);
-
-            if(check <= _movement.Nav_StoppingDistance)
-            {
-                _isMove = false;
-                _animator.SetBool("isRun", _isMove);
-            }
-        }
     }
 
-    private bool Moving()
+    private void Moving()
     {
-        RaycastHit hit; // Ray에 맞은 놈들 저장한다.
-        if (Physics.Raycast(GetMouseRay(), out hit, 100.0f))
-        {
-            if (Input.GetMouseButtonDown(1) || Input.GetMouseButton(1))
-            {
-                _isMove = true;
-                _movePoint = hit.point;
-                _movement.MoveTo(_movePoint, _playerSpeed, _playerMaxSpeed);
+        float _h = Input.GetAxisRaw("Horizontal");
+        float _v = Input.GetAxisRaw("Vertical");
 
-                _animator.SetBool("isRun", _isMove);
-            }
+        Vector3 dir = new Vector3(_h, 0, _v);
 
-            return true;
-        }
-
-        return false;
+        _movement.MoveTo(dir,_playerSpeed);
+       
     }
 
     private Ray GetMouseRay()
@@ -71,11 +59,53 @@ public class PlayerController : MonoBehaviour
 
     private void Attacking()
     {
-        //무기에 따른 애니메이션
-        if(Input.GetMouseButtonDown(0))
+        
+        if(_weapon == null)
         {
-            _animator.SetTrigger("isAttack");
-            Debug.Log("공격");
+            Debug.Log("무기 정보가 없습니다."); 
+        }
+
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            _isAttack = true;
+            _animator.SetBool("isAttacking", _isAttack);
+
+            StartCoroutine("ComboAttack");
+
+            //_attack.Attacking();
+
+            //Debug.Log("공격");
         }
     }
+
+    IEnumerator ComboAttack()
+    {
+
+        while(_isAttack)
+        {
+            yield return new WaitForSeconds(Time.deltaTime);
+
+            _comboTime -= Time.deltaTime;
+
+            if (_comboTime <= 0) break;
+
+            if (_currentCombo > _weapon.ComboMax) break;
+
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+               
+                _animator.SetTrigger("isComboAttack");
+                _currentCombo += 1;
+                _comboTime = 0.2f;
+
+                Debug.Log("공격");
+            }
+        }
+
+        _isAttack = false;
+        _currentCombo = 0;
+        _animator.SetBool("isAttacking", _isAttack);
+        _comboTime = 0.2f;
+    }
+
 }

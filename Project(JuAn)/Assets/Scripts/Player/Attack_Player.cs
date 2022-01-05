@@ -17,4 +17,9 @@ public class Attack_Player : MonoBehaviour
     {
         
     }
+
+    public void Attacking()
+    {
+
+    }
 }

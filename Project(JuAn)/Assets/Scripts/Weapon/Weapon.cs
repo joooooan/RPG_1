@@ -4,6 +4,20 @@
 [CreateAssetMenu(fileName = "Weapon", menuName = "Weapon/MakeNewWeaopn", order = 0)]
 public class Weapon : ScriptableObject
 {
+    private enum Type
+    {
+        Unarmed,
+        Spear,
+        LongSword,
+        Staff,
+        Axe,
+        Sword,
+        Bow
+    };
+
+    [SerializeField]
+    Type _type;
+
     //무기 소스 이미지
     [SerializeField]
     GameObject _Source = null;
@@ -11,6 +25,10 @@ public class Weapon : ScriptableObject
     //무기 애니메이션
     [SerializeField]
     AnimatorOverrideController _override = null;
+
+    [SerializeField]
+    int _comboMax = 0;
+    public int ComboMax { get { return _comboMax;  } } 
 
     //무기 데미지
     [SerializeField]
