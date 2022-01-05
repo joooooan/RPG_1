@@ -5,34 +5,33 @@ using UnityEngine;
 public class Stat : MonoBehaviour
 {
     [SerializeField]
-    private int _hp;
-    public int Hp { get { return _hp; } set { _hp = value; } }
+    protected int _hp;
 
-    private int _currhp;
-    public int CurrHp { get { return _currhp; } set { _currhp = value; } }
+    protected int _currhp;
+    
+    [SerializeField]
+    protected int _mp;
+    
+    protected int _currmp;
+    
+    [SerializeField]
+    protected int _atk;
 
     [SerializeField]
-    private int _mp;
-    public int Mp { get { return _mp; } set { _mp = value; } }
+    protected int _def;
 
-    private int _currmp;
+    public int Hp { get { return _hp; } set { _hp = value; } }
+    public int CurrHp { get { return _currhp; } set { _currhp = value; } }
+    public int Mp { get { return _mp; } set { _mp = value; } }
     public int CurrMp { get { return _currmp; } set { _currmp = value; } }
 
-    [SerializeField]
-    private int _atk;
-
-    [SerializeField]
-    private int _def;
-
-    [SerializeField]
-    private int _exp;
-
-
-    // Start is called before the first frame update
     private void Awake()
     {
+        _hp = 10;
         _currhp = _hp;
+        _mp = 5;
         _currmp = _mp;
+        _atk = 2;
+        _def = 2;
     }
-
 }

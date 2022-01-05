@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class MonsterController : MonoBehaviour
+public class MonsterController : Stat
 {
     enum State
     {
@@ -18,28 +18,31 @@ public class MonsterController : MonoBehaviour
 
     State _monsterState;
 
-    Stat _stat;
-    Ray _ray;
-
     private float _currTime;
 
     [SerializeField]
+    private float _hitDelay = 0.2f;
+
+    private bool _isDelay;
+
+    [SerializeField]
     private float _limitTime;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         _monsterState = State.Search;
-        _stat = this.GetComponent<Stat>();
+        _isDelay = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_stat == null) return; // 모든 몬스터는 Stat 클래스를 가지고 있어야 한다.
+        
 
         MonsterState();
-
     }
 
     void MonsterState()
@@ -79,41 +82,13 @@ public class MonsterController : MonoBehaviour
     }
 
     private void Idle()
-    {
-        if (_stat.Hp > _stat.CurrHp)
-        {
-            _currTime = 0;
-            _monsterState = State.Search;
-        }
+    {      
+          _monsterState = State.Search;
+        
     }
 
     private void Search()
     {
-       //_currTime += Time.deltaTime;
-       //
-       //if (_currTime > _limitTime)
-       //{
-       //    _monsterState = State.Idle;
-       //    Debug.Log("Search -> Idle ");
-       //    _limitTime = 0;
-       //}
-
-        _ray = new Ray(this.transform.position, this.transform.forward);
-        Debug.DrawRay(_ray.origin, _ray.direction * 50.0f, Color.red);
-
-        RaycastHit hit;
-        if (Physics.Raycast(_ray, out hit, 50.0f))
-        {
-            Debug.Log(hit.transform.tag);
-
-            if (hit.transform.tag == "Player")
-            {
-                _monsterState = State.Finding;
-            }
-            
-        }
-
-
 
     }
 
@@ -141,5 +116,34 @@ public class MonsterController : MonoBehaviour
     {
 
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Hand_L" || other.tag == "Hand_R")
+        {
+            if(!_isDelay)
+            {
+                StartCoroutine("Hit");
+                
+            }
+            else
+            {
+
+            }
+        }
+    }
+
+    IEnumerator Hit(string name)
+    {
+        _isDelay = true;
+        int damage = WeaponManager.Instance.GetDamage(name);
+        _currhp -= damage;
+
+        Debug.Log("공격 당함 (피해 : " + damage + ")");
+
+        yield return new WaitForSeconds(_hitDelay);
+        _isDelay = false;
+    }
+
 
 }
