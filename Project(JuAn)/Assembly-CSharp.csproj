@@ -53,10 +53,6 @@
     <UnityVersion>2019.4.32f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Packages\ExplosiveLLC\Demo Elements\Code\CameraController.cs" />
-    <Compile Include="Assets\Packages\ExplosiveLLC\Demo Elements\Code\GUIControls.cs" />
-    <Compile Include="Assets\Packages\ExplosiveLLC\Demo Elements\Code\HighJumpTrampoline.cs" />
-    <Compile Include="Assets\Packages\ExplosiveLLC\Demo Elements\Code\NoJumpSlime.cs" />
     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\ActionHandler.cs" />
     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Character\Attack.cs" />
     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\Actions\Character\Cast.cs" />
@@ -101,6 +97,10 @@
     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\RPGCharacterNavigationController.cs" />
     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\RPGCharacterWeaponController.cs" />
     <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Code\SetupInputLayers.cs" />
+    <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Demo Elements\Code\CameraController.cs" />
+    <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Demo Elements\Code\GUIControls.cs" />
+    <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Demo Elements\Code\HighJumpTrampoline.cs" />
+    <Compile Include="Assets\Packages\ExplosiveLLC\RPG Character Mecanim Animation Pack\Demo Elements\Code\NoJumpSlime.cs" />
     <Compile Include="Assets\Packages\ExplosiveLLC\SuperCharacterController\Code\Gravity.cs" />
     <Compile Include="Assets\Packages\ExplosiveLLC\SuperCharacterController\Code\PlayerCamera.cs" />
     <Compile Include="Assets\Packages\ExplosiveLLC\SuperCharacterController\Code\PlayerInputController.cs" />
