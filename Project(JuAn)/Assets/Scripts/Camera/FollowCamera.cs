@@ -45,18 +45,18 @@ public class FollowCamera : MonoBehaviour
 
     private void DistanceControll()
     {
-        float value = Input.GetAxis("Mouse ScrollWheel");
+        //float value = Input.GetAxis("Mouse ScrollWheel");
 
-        if(value > 0)
-        {
-            _distance -= value * _scrollSpeed;
-
-        }
-        else if (value <0)
-        {
-            _distance -= value * _scrollSpeed;
-        }
-
-        _distance = Mathf.Clamp(_distance, 3.5f, 10f);
+        //if(value > 0)
+        //{
+        //    _distance -= value * _scrollSpeed;
+        //
+        //}
+        //else if (value <0)
+        //{
+        //    _distance -= value * _scrollSpeed;
+        //}
+        //
+        //_distance = Mathf.Clamp(_distance, 3.5f, 10f);
     }
 }

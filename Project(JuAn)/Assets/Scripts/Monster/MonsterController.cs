@@ -33,15 +33,13 @@ public class MonsterController : Stat
     // Start is called before the first frame update
     void Start()
     {
-        _monsterState = State.Search;
+        _monsterState = State.Idle;
         _isDelay = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-
         MonsterState();
     }
 
@@ -83,8 +81,7 @@ public class MonsterController : Stat
 
     private void Idle()
     {      
-          _monsterState = State.Search;
-        
+          
     }
 
     private void Search()
@@ -123,8 +120,8 @@ public class MonsterController : Stat
         {
             if(!_isDelay)
             {
-                StartCoroutine("Hit");
-                
+                StartCoroutine("Hit",other.name);
+                Debug.Log(other.name);
             }
             else
             {
@@ -137,7 +134,12 @@ public class MonsterController : Stat
     {
         _isDelay = true;
         int damage = WeaponManager.Instance.GetDamage(name);
-        _currhp -= damage;
+        damage += (_def - StatManager.Instance.GetPlayerStat("STR"));
+        if(damage <= 0)
+        {
+            damage = 0;
+        }
+        _currhp -= damage ;
 
         Debug.Log("공격 당함 (피해 : " + damage + ")");
 

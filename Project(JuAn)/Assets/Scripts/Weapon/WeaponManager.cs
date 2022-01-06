@@ -6,15 +6,18 @@ public class WeaponManager : MonoBehaviour
 {
     private static WeaponManager instance = null;
 
-    List<Dictionary<string, object>> _data = CSV_AssetReader.Read("Weapon/WeaponData");
-
+    public List<Dictionary<string, object>> _data;
     private void Awake()
     {
         if (null == instance)
         {
             instance = this;
 
+            _data = CSV_AssetReader.Read("Weapon/WeaponData");
+
+
             DontDestroyOnLoad(this.gameObject);
+            
         }
         else
         {

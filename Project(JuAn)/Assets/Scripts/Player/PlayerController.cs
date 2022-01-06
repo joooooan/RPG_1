@@ -30,9 +30,8 @@ public class PlayerController : Stat
         _animator = this.GetComponent<Animator>();
         _attack = this.GetComponent<Attack_Player>();
         _comboTime = 0.3f;
-        _isEquip = false;
-        _rightHand = GameObject.FindGameObjectWithTag("Hand_R");
-        _leftHand = GameObject.FindGameObjectWithTag("Hand_L");
+
+
     }
 
     // Update is called once per frame
@@ -47,6 +46,8 @@ public class PlayerController : Stat
 
         float _h = Input.GetAxis("Horizontal");      
         float _v = Input.GetAxis("Vertical");
+
+        Debug.Log(_h);
 
         Vector3 dir = new Vector3(_h, 0, _v);
 
@@ -119,8 +120,5 @@ public class PlayerController : Stat
         _animator.SetBool("isAttacking", false);
         _comboTime = 0.3f;
     }
-
-
-
 
 }

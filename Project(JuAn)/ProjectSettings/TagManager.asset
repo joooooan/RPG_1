@@ -4,10 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
-  - Weapon
-  - Hand_L
-  - Hand_R
+  - Shadow
+  - Collide
   layers:
   - Default
   - TransparentFX
@@ -17,8 +15,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - TempCast
+  - Walkable
   - 
   - 
   - 

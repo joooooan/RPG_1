@@ -1,10 +1,10 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using System.Text.RegularExpressions;
 
-public class CSV_AssetReader
+public class CSV_AssetReader: MonoBehaviour
 {
     static string SPLIT_RE = @",(?=(?:[^""]*""[^""]*"")*(?![^""]*""))";
     static string LINE_SPLIT_RE = @"\r\n|\n\r|\n|\r";
