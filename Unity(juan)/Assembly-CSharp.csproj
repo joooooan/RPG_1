@@ -53,6 +53,7 @@
     <UnityVersion>2019.4.32f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\PolygonFantasyHeroCharacters\Scripts\CharacterRandomizer.cs" />
     <Compile Include="Assets\Scripts\Camera\BillBorad.cs" />
     <Compile Include="Assets\Scripts\Camera\FollowCamera.cs" />
     <Compile Include="Assets\Scripts\Data\CSV_AssetReader.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Assets\Scripts\Data\Item_Weapon.cs" />
     <Compile Include="Assets\Scripts\HpBar.cs" />
     <Compile Include="Assets\Scripts\Inventory_Ui.cs" />
+    <Compile Include="Assets\Scripts\Material_ToolTip.cs" />
     <Compile Include="Assets\Scripts\MeleeWarriorLeftHandIK.cs" />
     <Compile Include="Assets\Scripts\Monster\MonsterAttackCollsion.cs" />
     <Compile Include="Assets\Scripts\Monster\MonsterController.cs" />
@@ -70,7 +72,6 @@
     <Compile Include="Assets\Scripts\Monster\SearchBox.cs" />
     <Compile Include="Assets\Scripts\Monster\WayPoint.cs" />
     <Compile Include="Assets\Scripts\Monster_Type.cs" />
-    <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\Player\Movement.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAttackCollsion.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Assets\Scripts\PlayerData.cs" />
     <Compile Include="Assets\Scripts\PlayerDataManager.cs" />
     <Compile Include="Assets\Scripts\Slot.cs" />
+    <Compile Include="Assets\Scripts\Soul_ToolTip.cs" />
     <Compile Include="Assets\Scripts\Stat\Stat.cs" />
     <Compile Include="Assets\Scripts\Stat\StatManager.cs" />
     <Compile Include="Assets\Scripts\WayPoint\DrawGizmo.cs" />
@@ -86,12 +88,15 @@
     <Compile Include="Assets\Scripts\WayPoint\Node.cs" />
     <Compile Include="Assets\Scripts\WayPoint\WayPointEditor.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponManager.cs" />
+    <Compile Include="Assets\Scripts\Weapon_ToolTip.cs" />
     <Compile Include="Assets\ShopManager.cs" />
+    <Compile Include="Assets\Stat_Ui.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Packages\JsonDotNet\link.xml" />
     <None Include="Assets\Packages\JsonDotNet\Assemblies\Windows\Newtonsoft.Json.XML" />
     <None Include="Assets\Packages\JsonDotNet\Assemblies\Standalone\Newtonsoft.Json.XML" />
+    <None Include="Assets\PolygonFantasyHeroCharacters\Shaders\POLYGON_CustomCharacters.shader" />
     <None Include="Assets\Packages\JsonDotNet\Assemblies\Standalone\Newtonsoft.Json.dll" />
     <None Include="Assets\Packages\JsonDotNet\Assemblies\AOT\Newtonsoft.Json.dll" />
     <None Include="Assets\Packages\JsonDotNet\Assemblies\AOT\Newtonsoft.Json.XML" />

@@ -81,13 +81,16 @@ public class MonsterController : Stat
         _isAttacking = false;
         _currhp = _hp;
         _index = 0;
+
         SetWayPoint();
+
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -292,7 +295,13 @@ public class MonsterController : Stat
 
     private void SetWayPoint()
     {
+        if(_way != null)
+        {
+            Destroy(_way.gameObject);
+        }
+
         _way = new GameObject("Way Point"); //부모 객체 생성
+        _way.transform.parent = this.transform;
         _way.AddComponent<WayPoint>(); //WayPoint Script  추가
         _waypoint = _way.GetComponent<WayPoint>(); //추가한 Script에 연결.
 
@@ -443,5 +452,8 @@ public class MonsterController : Stat
     {
         _hpbar.value = Mathf.Lerp(_hpbar.value, (float)_currhp / (float)_hp,Time.deltaTime*10);
     }
+
+
+    
 
 }

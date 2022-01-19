@@ -7,12 +7,15 @@ using System;
 
 public class PlayerInventory : MonoBehaviour
 {
-
-
     private static PlayerInventory instance = null;
 
     [SerializeField]
-    public Inventory_Ui _ui;
+    public GameObject _weapon;
+
+    public PlayerController _player;
+
+    [SerializeField]
+    GameObject Ui;
 
     [SerializeField]
     GameObject _weaponSlot;
@@ -20,6 +23,8 @@ public class PlayerInventory : MonoBehaviour
     GameObject _soulSlot;
     [SerializeField]
     GameObject _materialSlot;
+    [SerializeField]
+    GameObject _equipSlot;
 
     int _weaponSlot_Size;
     int _soulSlot_Size;
@@ -28,6 +33,8 @@ public class PlayerInventory : MonoBehaviour
     Item_Weapon[] _weaponArray;
     Item_Soul[] _soulArray;
     Item_Material[] _materialArray;
+
+    public Inventory_Ui _ui = null;
 
     private string _weaponName = "";
     public string Equipment_WeaponName { get { return _weaponName; } set { _weaponName = value; } }
@@ -41,6 +48,10 @@ public class PlayerInventory : MonoBehaviour
             _weaponSlot_Size = _weaponSlot.transform.childCount;
             _soulSlot_Size = _soulSlot.transform.childCount;
             _materialSlot_Size = _materialSlot.transform.childCount;
+
+            _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+
+            _ui = Ui.GetComponent<Inventory_Ui>();
 
             _weaponArray = new Item_Weapon[_weaponSlot_Size];
             _soulArray = new Item_Soul[_soulSlot_Size];
@@ -121,9 +132,54 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public void ReMoveWeapon(int index)
+    public void EquipWeapon(Item_Weapon weapon)
     {
-        //_weaponSlot.transform.GetChild(index).GetComponent<Slot>().
+        //Debug.Log(PlayerDataManager.Instance.Player._isEquip);
+
+        if(PlayerDataManager.Instance.Player._isEquip)
+        {
+            if(_weapon.transform.childCount > 0) //손에 있는 오브젝트를 삭제. 및 인벤토리에 추가
+            {
+                Destroy(_weapon.transform.GetChild(0).gameObject);
+            }
+
+            //현재 장착시킬려고 하는 무기를 오브젝트화 시키고 위치를 잡아줌.
+            GameObject _currWeapon = Instantiate(weapon._itemObject, _weapon.transform);
+            _currWeapon.name = weapon.name;
+            _weaponName = weapon.name;
+
+            //장비 슬롯에 무기 추가.
+            _equipSlot.GetComponent<Slot>().Equip_Item(weapon);
+
+            _player.onEquip(true);
+
+        }
+        else
+        {
+            GameObject _currWeapon = Instantiate(weapon._itemObject, _weapon.transform);
+            _currWeapon.name = weapon.name;
+            _weaponName = weapon.name;
+
+            _player.onEquip(true);
+
+            //장비 슬롯에 무기 추가.
+            _equipSlot.GetComponent<Slot>().Equip_Item(weapon);
+
+            PlayerDataManager.Instance.Player._isEquip = true;
+        }
+    }
+
+    public void ReleaseWeapon(Item_Weapon weapon)
+    {
+
+        //Debug.Log("해제");
+
+        if (_weapon.transform.childCount > 0) //손에 있는 오브젝트를 삭제. 및 인벤토리에 추가
+        {
+            Destroy(_weapon.transform.GetChild(0).gameObject);
+        }
+        _player.onEquip(false);
+
     }
 
 }

@@ -22,7 +22,16 @@ public class Inventory_Ui : MonoBehaviour
     [SerializeField]
     private GameObject _inventory;
 
-   
+    [SerializeField]
+    private GameObject _weaponToolTip;
+
+    [SerializeField]
+    private GameObject _materialToolTip;
+
+    [SerializeField]
+    private GameObject _soulToolTip;
+
+
 
     void Awake()
     {
@@ -34,6 +43,7 @@ public class Inventory_Ui : MonoBehaviour
     {
         if(_inventory.activeSelf == false)
         {
+            
             _inventory.SetActive(true);
         }
         else
@@ -54,7 +64,6 @@ public class Inventory_Ui : MonoBehaviour
         else if(_weaponTab.activeSelf == false)
         {
             disableTab();
-
             _weaponTab.SetActive(true);
         }
 
@@ -81,7 +90,7 @@ public class Inventory_Ui : MonoBehaviour
             disableTab();
             _statTab.SetActive(false);
         }
-        else if (_soulTab.activeSelf == false)
+        else if (_statTab.activeSelf == false)
         {
             disableTab();
             _statTab.SetActive(true);
@@ -95,7 +104,7 @@ public class Inventory_Ui : MonoBehaviour
             disableTab();
             _materialTab.SetActive(false);
         }
-        else if (_soulTab.activeSelf == false)
+        else if (_materialTab.activeSelf == false)
         {
             disableTab();
             _materialTab.SetActive(true);
@@ -111,5 +120,40 @@ public class Inventory_Ui : MonoBehaviour
         _soulTab.SetActive(false);
     }
 
+    public void ShowToolTip(Vector3 position,Item_Weapon _weapon)
+    {
+        _weaponToolTip.SetActive(true);
+
+        Vector3 tipSize = new Vector3(_weaponToolTip.GetComponent<RectTransform>().sizeDelta.x, 0, 0);
+
+        _weaponToolTip.transform.position = position + tipSize;
+        _weaponToolTip.GetComponent<Weapon_ToolTip>().SetText(_weapon);
+    }
+    public void ShowToolTip(Vector3 position, Item_Material _material)
+    {
+        _materialToolTip.SetActive(true);
+        Vector3 tipSize = new Vector3(_materialToolTip.GetComponent<RectTransform>().sizeDelta.x, 0, 0);
+        _materialToolTip.transform.position = position + tipSize;
+        _materialToolTip.GetComponent<Material_ToolTip>().SetText(_material);
+        
+        
+    }
+    public void ShowToolTip(Vector3 position, Item_Soul _soul)
+    {
+        _soulToolTip.SetActive(true);
+
+        Vector3 tipSize = new Vector3(_soulToolTip.GetComponent<RectTransform>().sizeDelta.x, 0, 0);
+
+        _soulToolTip.transform.position = position + tipSize;
+        _soulToolTip.GetComponent<Soul_ToolTip>().SetText(_soul);
+    }
+
+
+    public void HideToopTip()
+    {
+        _weaponToolTip.SetActive(false);
+        _materialToolTip.SetActive(false);
+        _soulToolTip.SetActive(false);
+    }
 
 }

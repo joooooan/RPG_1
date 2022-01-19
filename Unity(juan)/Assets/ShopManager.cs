@@ -10,7 +10,7 @@ public class ShopManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerInventory.Instance.AddInven(_weapon);  
+        PlayerInventory.Instance.EquipWeapon(_weapon);
     }
 
     // Update is called once per frame

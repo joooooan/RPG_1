@@ -4,9 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-
-
-
 public class PlayerController : MonoBehaviour
 {
 
@@ -22,13 +19,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private PlayerAttackCollsion _attackCollsion;
 
-    [SerializeField]
-    private GameObject _weapon;
-
     private float _currTime;
 
     private Movement _movement;
     private Animator _animator;
+
+    
 
     private bool _isDead;
 
@@ -63,10 +59,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PlayerDataManager.Instance.Player._isDead == true) return;
 
         Moving();
         Dodge();
         Attacking();
+        OpenInventory();
     }
 
     void FixedUpdate()
@@ -167,11 +165,25 @@ public class PlayerController : MonoBehaviour
         }
         PlayerDataManager.Instance.Player._CurrHp -= damage;
 
-        Debug.Log("Player가 공격 당함 (피해 : " + damage + ")");
+        if(PlayerDataManager.Instance.Player._CurrHp <=0 )
+        {
+            PlayerDataManager.Instance.Player._CurrHp = 0;
 
-        yield return new WaitForSeconds(PlayerDataManager.Instance.Player._HitDelay);
+            PlayerDataManager.Instance.Player._isDead = true;
+            _animator.SetTrigger("isDead");
 
-        _isDelay = false;
+            yield return new WaitForSeconds(0.1f);
+        }
+        else
+        {
+            Debug.Log("Player가 공격 당함 (피해 : " + damage + ")");
+
+            yield return new WaitForSeconds(PlayerDataManager.Instance.Player._HitDelay);
+
+            _isDelay = false;
+        }
+
+
         
     }
 
@@ -195,6 +207,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    public void onEquip(bool isEquip)
+    {
+        _animator.SetBool("isEquip", isEquip);
+    }
 
 }
