@@ -12,7 +12,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
         Material,
         Soul,
         Equip,
-        Product,
+        Potion,
         Null
 
     }
@@ -24,6 +24,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     Item_Weapon _weapon = null;
     Item_Material _material = null;
     Item_Soul _soul = null;
+    Item_Potion _potion = null;
 
     private bool _isFull;
     public bool IsFull { get { return _isFull; } }
@@ -38,12 +39,32 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
         this.GetComponent<Image>().sprite = item._itemSprite;
 
     }
-    public void AddItem(Item_Material item)
+    public void AddItem(Item_Potion item)
     {
         _isFull = true;
-        _material = item;
-        _type = Item_Type.Material;
+        _potion = item;
+        //Debug.Log("무기 이름 : " + _weapon._name);
+        _type = Item_Type.Potion;
         this.GetComponent<Image>().sprite = item._itemSprite;
+
+    }
+    public void AddItem(GameObject item)
+    {
+        if(item.GetComponent<Item_Material>() != null)
+        {
+            _isFull = true;
+            _material = item.GetComponent<Item_Material>();
+            _type = Item_Type.Material;
+            this.GetComponent<Image>().sprite = item.GetComponent<Item_Material>()._itemSprite;
+        }
+        else if (item.GetComponent<Item_Potion>() != null)
+        {
+            _isFull = true;
+            _potion = item.GetComponent<Item_Potion>();
+            _type = Item_Type.Potion;
+            this.GetComponent<Image>().sprite = item.GetComponent<Item_Material>()._itemSprite;
+        }
+
     }
     public void AddItem(Item_Soul item)
     {
@@ -62,11 +83,6 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
         this.GetComponent<Image>().color = Color.white;
     }
 
-    public void SetItem()
-    {
-
-    }
-
     public void OnPointerClick(PointerEventData eventData)
     {
 
@@ -78,7 +94,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
 
                 _type = Item_Type.Null;
                 _isFull = false;
-
+                _weapon = null;
                 this.GetComponent<Image>().sprite = _emptyImage;
                 PlayerInventory.Instance.EquipWeapon(_weapon);
 
@@ -89,8 +105,26 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
 
                 break;
 
+            case Item_Type.Potion:
+
+                this.GetComponent<Image>().sprite = _emptyImage;
+                _type = Item_Type.Null;
+                _isFull = false;
+                _potion = null;
+
+                PlayerDataManager.Instance.Player._CurrHp += _potion.HpCount;
+
+                if(PlayerDataManager.Instance.Player._CurrHp > PlayerDataManager.Instance.Player._MaxHp)
+                {
+                    PlayerDataManager.Instance.Player._CurrHp = PlayerDataManager.Instance.Player._MaxHp;
+                }
+
+                break;
+
             case Item_Type.Soul:
 
+
+                this.GetComponent<Image>().sprite = _emptyImage;
                 break;
 
             case Item_Type.Equip:

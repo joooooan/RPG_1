@@ -12,10 +12,12 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField]
     public GameObject _weapon;
 
-    public PlayerController _player;
+    public PlayerController _player = null;
 
     [SerializeField]
     GameObject Ui;
+
+    
 
     [SerializeField]
     GameObject _weaponSlot;
@@ -30,10 +32,7 @@ public class PlayerInventory : MonoBehaviour
     int _soulSlot_Size;
     int _materialSlot_Size;
 
-    Item_Weapon[] _weaponArray;
-    Item_Soul[] _soulArray;
-    Item_Material[] _materialArray;
-
+    public GameObject _enoughGold_UI = null;
     public Inventory_Ui _ui = null;
 
     private string _weaponName = "";
@@ -52,10 +51,6 @@ public class PlayerInventory : MonoBehaviour
             _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
             _ui = Ui.GetComponent<Inventory_Ui>();
-
-            _weaponArray = new Item_Weapon[_weaponSlot_Size];
-            _soulArray = new Item_Soul[_soulSlot_Size];
-            _materialArray = new Item_Material[_materialSlot_Size];
 
             DontDestroyOnLoad(this.gameObject);
 
@@ -86,7 +81,6 @@ public class PlayerInventory : MonoBehaviour
            if(!_weaponSlot.transform.GetChild(i).GetComponent<Slot>().IsFull)
            { 
                 _weaponSlot.transform.GetChild(i).GetComponent<Slot>().AddItem(weapon);
-                _weaponArray[i] = weapon;
 
                 break;
            }
@@ -96,14 +90,29 @@ public class PlayerInventory : MonoBehaviour
            }
         }
     }
-    public void AddInven(Item_Material material)
+    public void AddInven(Item_Potion material)
     {
         for (int i = 0; i < _weaponSlot_Size; i++)
         {
             if (!_weaponSlot.transform.GetChild(i).GetComponent<Slot>().IsFull)
             {
-                _weaponSlot.transform.GetChild(i).GetComponent<Slot>().AddItem(material);
-                _materialArray[i] = material;
+                _materialSlot.transform.GetChild(i).GetComponent<Slot>().AddItem(material);
+
+                break;
+            }
+            else
+            {
+                continue;
+            }
+        }
+    }
+    public void AddInven(GameObject material)
+    {
+        for (int i = 0; i < _weaponSlot_Size; i++)
+        {
+            if (!_weaponSlot.transform.GetChild(i).GetComponent<Slot>().IsFull)
+            {
+                _materialSlot.transform.GetChild(i).GetComponent<Slot>().AddItem(material);
 
                 break;
             }
@@ -120,8 +129,7 @@ public class PlayerInventory : MonoBehaviour
         {
             if (!_weaponSlot.transform.GetChild(i).GetComponent<Slot>().IsFull)
             {
-                _weaponSlot.transform.GetChild(i).GetComponent<Slot>().AddItem(soul);
-                _soulArray[i] = soul;
+                _soulSlot.transform.GetChild(i).GetComponent<Slot>().AddItem(soul);
 
                 break;
             }

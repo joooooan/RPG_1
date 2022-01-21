@@ -20,10 +20,32 @@ public class Soul_Shop : MonoBehaviour
     [SerializeField]
     GameObject _product;
 
-    private void OnEnable()
+    int index;
+
+    private void Awake()
     {
+       //index = Random.Range(0, _Items.Length);
+       //
+       //_name.text = _Items[index]._name;
+       //_price.text = "" + _Items[index].Price;
+       //_explain.text = _Items[index]._explain;
 
+    }
 
-        
+    public void Buy()
+    {
+        if (_Items[index].Price > PlayerDataManager.Instance.Player._Gold)
+        {
+            PlayerInventory.Instance._enoughGold_UI.SetActive(true);
+        }
+        else
+        {
+            PlayerDataManager.Instance.Player._Gold -= _Items[index].Price;
+
+            PlayerInventory.Instance.AddInven(_Items[index]);
+            this.gameObject.SetActive(false);
+
+        }
+
     }
 }

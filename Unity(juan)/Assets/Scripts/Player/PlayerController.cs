@@ -24,8 +24,6 @@ public class PlayerController : MonoBehaviour
     private Movement _movement;
     private Animator _animator;
 
-    
-
     private bool _isDead;
 
     private bool _isAttack;
@@ -74,22 +72,24 @@ public class PlayerController : MonoBehaviour
 
     private void Moving()
     {
-
-        float _h = Input.GetAxis("Horizontal");      
+       
+       
+        float _h = Input.GetAxis("Horizontal");
         float _v = Input.GetAxis("Vertical");
 
         Vector3 _dir = new Vector3(_h, 0, _v);
 
         _animator.SetFloat("Speed", _dir.magnitude);
 
-        if (!(_h == 0 && _v == 0) )
-        {           
+        if (!(_h == 0 && _v == 0))
+        {
             _movement.MoveTo(_dir, _playerSpeed, _rotateSpeed);
         }
         else
         {
-            
+
         }
+       
 
     }
 

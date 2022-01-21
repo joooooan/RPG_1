@@ -13,6 +13,10 @@ TagManager:
   - HandTransform
   - MonsterManager
   - Monster
+  - Postion_Product
+  - Soul_Product
+  - Weapon_Product
+  - Enough_Message
   layers:
   - Default
   - TransparentFX

@@ -53,12 +53,13 @@
     <UnityVersion>2019.4.32f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Message_UI.cs" />
     <Compile Include="Assets\Packages\PolygonFantasyHeroCharacters\Scripts\CharacterRandomizer.cs" />
     <Compile Include="Assets\Scripts\Camera\BillBorad.cs" />
     <Compile Include="Assets\Scripts\Camera\FollowCamera.cs" />
     <Compile Include="Assets\Scripts\Data\CSV_AssetReader.cs" />
     <Compile Include="Assets\Scripts\Data\Item_Material.cs" />
-    <Compile Include="Assets\Scripts\Data\Item_Posion.cs" />
+    <Compile Include="Assets\Scripts\Data\Item_Potion.cs" />
     <Compile Include="Assets\Scripts\Data\Item_Soul.cs" />
     <Compile Include="Assets\Scripts\Data\Item_Weapon.cs" />
     <Compile Include="Assets\Scripts\HpBar.cs" />
