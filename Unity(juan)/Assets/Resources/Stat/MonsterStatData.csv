@@ -1,5 +1,5 @@
-Name,STR,DEF
-SkeletonSlave,2,2
-SkeletonSoldier_1,5,3
-SkeletonSoldier_2,3,5
-SkeletonKnight,10,10
+Name,HP,STR,DEF,MinEXP,MaxEXP,Gold
+SkeletonSlave,15,2,2,1,3,10
+SkeletonSoldier_1,30,5,3,5,10,40
+SkeletonSoldier_2,50,3,5,5,10,40
+SkeletonKnight,100,10,10,15,20,100

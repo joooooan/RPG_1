@@ -17,6 +17,8 @@ public class PlayerInventory : MonoBehaviour
 
     [SerializeField]
     Text _gold;
+    [SerializeField]
+    public Text _level;
 
     [SerializeField]
     GameObject _weaponSlot;
@@ -190,11 +192,6 @@ public class PlayerInventory : MonoBehaviour
     public void Gold_Update()
     {
         _gold.text = ""+PlayerDataManager.Instance.Player._Gold;
-    }
-
-    public void DisableUI()
-    {
-
     }
 
 }

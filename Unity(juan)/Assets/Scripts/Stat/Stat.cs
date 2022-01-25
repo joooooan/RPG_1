@@ -21,7 +21,7 @@ public class Stat : MonoBehaviour
     protected int _def;
 
     [SerializeField]
-    protected float _hitDelay = 0.3f;
+    protected float _hitDelay = 1.0f;
 
     public int Hp { get { return _hp; } set { _hp = value; } }
     public int CurrHp { get { return _currhp; } set { _currhp = value; } }

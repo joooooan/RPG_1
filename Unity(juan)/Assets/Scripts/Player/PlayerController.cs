@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
@@ -35,12 +34,6 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 _dir;
 
-    [SerializeField]
-    private Slider _hpbar;
-
-    [SerializeField]
-    private Slider _expbar;
-
     private void Awake()
     {
 
@@ -63,11 +56,6 @@ public class PlayerController : MonoBehaviour
         Dodge();
         Attacking();
         OpenInventory();
-    }
-
-    void FixedUpdate()
-    {
-        HandleSlider();
     }
 
     private void Moving()
@@ -199,12 +187,6 @@ public class PlayerController : MonoBehaviour
         _attackCollsion.gameObject.SetActive(true);
         
         _animator.ResetTrigger("isComboAttack");
-    }
-
-    private void HandleSlider()
-    {
-        _expbar.value = (float)PlayerDataManager.Instance.Player._CurrExp / (float)PlayerDataManager.Instance.Player._NextExp;
-        _hpbar.value = (float)PlayerDataManager.Instance.Player._CurrHp / (float)PlayerDataManager.Instance.Player._MaxHp;
     }
 
     private void OpenInventory()

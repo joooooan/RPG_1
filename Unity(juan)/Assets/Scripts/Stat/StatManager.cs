@@ -31,9 +31,7 @@ public class StatManager : MonoBehaviour
 
     private void Start()
     {
-        PlayerPrefs.SetInt("Lv", 1);
 
-        PlayerPrefs.SetInt("Exp", 0);
     }
 
     public static StatManager Instance
@@ -48,19 +46,19 @@ public class StatManager : MonoBehaviour
         }
     }
 
-    public int GetPlayerStat(int Lv,string StatName)
+    public int GetPlayerStat(string statName)
     {
-        
+
         for (int i = 0; i < _playerData.Count; i++)
         {
-            if ((int)_playerData[i]["Lv"] == Lv)
+            if((int)_playerData[i]["Lv"] == PlayerDataManager.Instance.Player._Lv)
             {
-                //Debug.Log(_playerData[i][StatName] + "을 받아옴.(Player)");
-                return (int)_playerData[i][StatName];
+                return (int)_playerData[i][statName];
             }
+
         }
 
-        Debug.Log("일치하는 플레이어의 능력치가 없습니다.");
+        Debug.Log("Player 능력치를 찾을 수 없습니다.");
         return 0;
 
     }
@@ -72,44 +70,13 @@ public class StatManager : MonoBehaviour
         {
             if ((string)_monsterData[j]["Name"] == Name)
             {
-                Debug.Log(_monsterData[j][StatName] + "을 받아옴.(Monster)");
+                //Debug.Log(_monsterData[j][StatName] + "을 받아옴.(Monster)");
                 return (int)_monsterData[j][StatName];
             }
         }         
 
         Debug.Log("일치하는 몬스터가 없습니다.");
         return 0;
-    }
-
-    public void PlayerLevelUp()
-    {
-        int currLv = PlayerPrefs.GetInt("Lv");
-        currLv += 1;
-        PlayerPrefs.SetInt("Lv", currLv);
-
-    }
-
-    public void SetPlayerExp(int Exp)
-    {
-        int currExp = PlayerPrefs.GetInt("Exp"); //현재 경험치를 받아옴
-        int currLv = PlayerPrefs.GetInt("Lv");//현재 레벨을 받아옴
-        currExp += Exp;
-
-        for (int i = 0; i < _playerData.Count; i++)
-        {
-            if ((int)_playerData[i]["Lv"] == currLv)
-            {
-                if (currExp >= (int)_playerData[i]["Exp"] )
-                {
-                    currExp -= (int)_playerData[i]["Exp"]; //현재 경험치 - 필요 경험치
-                    PlayerLevelUp(); //레벨 업
-
-                    break;
-                }
-            }
-        }
-
-        PlayerPrefs.SetInt("Exp", currExp);
     }
 
 

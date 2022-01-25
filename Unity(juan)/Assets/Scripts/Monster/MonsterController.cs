@@ -48,6 +48,10 @@ public class MonsterController : Stat
 
     private int _index;
 
+    private int _minEXP;
+    private int _maxEXP;
+    private int _exp;
+
     private bool _isDelay;
     private bool _isAttacking;
 
@@ -70,6 +74,9 @@ public class MonsterController : Stat
         _searchbox = this.transform.GetComponentInChildren<SearchBox>();
         _agent = this.GetComponent<NavMeshAgent>();
         _weapon = this.GetComponent<MeleeWarriorLeftHandIK>();
+
+
+
     }
 
     private void OnEnable()
@@ -79,11 +86,22 @@ public class MonsterController : Stat
         _waitTime = 0;
         _isDelay = false;
         _isAttacking = false;
-        _currhp = _hp;
-        _index = 0;
 
-        SetWayPoint();
+        if("MonsterSource(Clone)" != this.gameObject.name)
+        {
+            _hp = StatManager.Instance.GetMonsterStat(this.gameObject.name, "HP");
+            _atk = StatManager.Instance.GetMonsterStat(this.gameObject.name, "STR");
+            _def = StatManager.Instance.GetMonsterStat(this.gameObject.name, "DEF");
+            _currhp = _hp;
+            _index = 0;
 
+            _minEXP = StatManager.Instance.GetMonsterStat(this.gameObject.name, "MinEXP");
+            _maxEXP = StatManager.Instance.GetMonsterStat(this.gameObject.name, "MaxEXP");
+            _exp = Random.Range(_minEXP, _maxEXP);
+            SetWayPoint();
+        }
+
+        
 
     }
 
@@ -263,6 +281,14 @@ public class MonsterController : Stat
         {
             damage = 0;
         }
+        else
+        {
+            Reset();
+            _agent.isStopped = true;
+            _animator.SetTrigger("isHit");
+
+            Debug.Log("몬스터가 공격 당함 (피해 : " + damage + ")");
+        }
 
         _currhp -= damage;
 
@@ -270,19 +296,19 @@ public class MonsterController : Stat
         {
             _animator.SetTrigger("isDeath");
 
+            PlayerDataManager.Instance.PlusExp(_exp);
+            PlayerDataManager.Instance.Player._Gold += StatManager.Instance.GetMonsterStat(this.gameObject.name, "Gold");
 
-            Invoke("ObjectAdd", 5.0f);
+            Invoke("ObjectAdd", 1.0f);
             _monsterState = State.Dead;
 
             yield return new WaitForSeconds(0.1f);
         }
         else 
         {
-            Reset();
-            _agent.isStopped = true;
-            _animator.SetTrigger("isHit");
 
-            Debug.Log("몬스터가 공격 당함 (피해 : " + damage + ")");
+            
+
 
             yield return new WaitForSeconds(_hitDelay);
 

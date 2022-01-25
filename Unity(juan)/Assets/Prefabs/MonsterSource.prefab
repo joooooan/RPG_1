@@ -968,7 +968,7 @@ GameObject:
   - component: {fileID: 2077297630982090252}
   - component: {fileID: 2077297630985436948}
   m_Layer: 0
-  m_Name: Skeleton_Soldier_1
+  m_Name: SkeletonSoldier_1
   m_TagString: Monsters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

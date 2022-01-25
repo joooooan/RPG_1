@@ -8,13 +8,17 @@ public class LoadManager : MonoBehaviour
 {
     public static string nextScene;
 
+
+
     [SerializeField]
-    Image progressBar;
+    Slider progressBar;
 
     private void Start()
 
     {
+
         StartCoroutine(LoadScene());
+
     }
 
     public static void LoadScene(string sceneName)
@@ -27,15 +31,19 @@ public class LoadManager : MonoBehaviour
 
     }
 
-
-
     IEnumerator LoadScene()
 
     {
 
+        yield return null;
+
+
+
         AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
 
-        op.allowSceneActivation = false; //로딩이 끝났을때 다음씬으로 넘어갈껀지 설정
+        op.allowSceneActivation = false;
+
+
 
         float timer = 0.0f;
 
@@ -45,25 +53,27 @@ public class LoadManager : MonoBehaviour
 
             yield return null;
 
+
+
             timer += Time.deltaTime;
-            if (op.progress < 0.9f) 
-            { 
-                progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, op.progress, timer); 
 
-                if (progressBar.fillAmount >= op.progress) 
-                { 
-                    timer = 0f; 
-                } 
+            if (op.progress < 0.9f)
+            {
+                progressBar.value = Mathf.Lerp(progressBar.value, op.progress, timer);
 
+                if (progressBar.value >= op.progress)
+                {
+                    timer = 0f;
+                }
             }
             else
             {
-                progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, 1f, timer);
+                progressBar.value = Mathf.Lerp(progressBar.value, 1f, timer);
 
-                if (progressBar.fillAmount == 1.0f)
-                { 
-                    op.allowSceneActivation = true; 
-                    yield break; 
+                if (progressBar.value == 1.0f)
+                {
+                    op.allowSceneActivation = true;
+                    yield break;
                 }
             }
         }

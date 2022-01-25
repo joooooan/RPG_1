@@ -94,9 +94,20 @@ public class PlayerDataManager : MonoBehaviour
         File.WriteAllText(path, format);
     }
 
-    private void InitData()
+    public void PlusExp(int exp)
     {
-        
+        Player._CurrExp += exp;
+
+        if(Player._CurrExp >= Player._NextExp)
+        {
+            Player._CurrExp -= Player._NextExp;
+            Player._NextExp = StatManager.Instance.GetPlayerStat("NextExp");
+            Player._Lv += 1;
+            PlayerInventory.Instance._level.text = "Lv : " + Player._Lv;
+
+            Player._Str = StatManager.Instance.GetPlayerStat("STR");
+            Player._Def = StatManager.Instance.GetPlayerStat("DEF");
+        }
     }
 
 }

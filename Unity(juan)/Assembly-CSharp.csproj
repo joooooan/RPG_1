@@ -104,9 +104,13 @@
     <Compile Include="Assets\Scripts\WayPoint\WayPointEditor.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponManager.cs" />
     <Compile Include="Assets\Scripts\Weapon_ToolTip.cs" />
-    <Compile Include="Assets\Scripts\dasdas.cs" />
+    <Compile Include="Assets\Start_Spawn.cs" />
     <Compile Include="Assets\Stat_Ui.cs" />
     <Compile Include="Assets\ToolTip_UI_Manager.cs" />
+    <Compile Include="Assets\UI_Canvas.cs" />
+    <Compile Include="Assets\UI_EXP.cs" />
+    <Compile Include="Assets\UI_Hp.cs" />
+    <Compile Include="Assets\UI_MP.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Packages\JsonDotNet\link.xml" />
