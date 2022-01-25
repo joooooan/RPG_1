@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerAttackCollsion : MonoBehaviour
 {
+    public bool _isAttack = false;
+
     private void OnEnable()
     {
         StartCoroutine(AutoDisable());
@@ -28,7 +30,7 @@ public class PlayerAttackCollsion : MonoBehaviour
     private IEnumerator AutoDisable()
     {
         yield return new WaitForSeconds(0.1f);
-
+        _isAttack = false;
         this.gameObject.SetActive(false);
 
     }

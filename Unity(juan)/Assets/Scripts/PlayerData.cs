@@ -18,6 +18,8 @@ public class PlayerData
     public float _HitDelay;
     public int _Gold;
 
+
+
     public PlayerData()
     {
         _Name = "이름없음";
@@ -37,4 +39,6 @@ public class PlayerData
         _isEquip = false;
         _Gold = 0;
     }
+
+
 }

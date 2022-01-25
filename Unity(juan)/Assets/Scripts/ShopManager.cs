@@ -5,37 +5,14 @@ using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
-    [SerializeField]
-    GameObject _enterShop;
-
-    [SerializeField]
-    GameObject _shopUi;
+    public Interaction_Shop _Shop;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            _enterShop.SetActive(true);
-        }
-    }
-
-    private void Update()
-    {
-        if(_enterShop.activeSelf == true)
-        {
-            if(Input.GetKeyDown(KeyCode.E))
-            {
-                if(_shopUi.activeSelf == true)
-                {
-                    _shopUi.SetActive(false);
-                }
-                else
-                {
-                    _shopUi.SetActive(true);
-                }
-                
-            }
-           
+            Message_UI_Manager.Instance._interaction_Shop.SetActive(true);
+            _Shop.gameObject.SetActive(true);
         }
     }
 
@@ -43,8 +20,9 @@ public class ShopManager : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            _shopUi.SetActive(false);
-            _enterShop.SetActive(false);
+            _Shop.gameObject.SetActive(false);
+            Message_UI_Manager.Instance._interaction_Shop.SetActive(false);
+            PopupUI_Manager.Instance.Close_PopupUi(PopupUI_Manager.Instance._shopPopup);
         }
     }
 }

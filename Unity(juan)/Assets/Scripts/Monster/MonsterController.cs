@@ -301,7 +301,6 @@ public class MonsterController : Stat
         }
 
         _way = new GameObject("Way Point"); //부모 객체 생성
-        _way.transform.parent = this.transform;
         _way.AddComponent<WayPoint>(); //WayPoint Script  추가
         _waypoint = _way.GetComponent<WayPoint>(); //추가한 Script에 연결.
 

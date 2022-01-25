@@ -43,8 +43,7 @@ public class WayPoint : MonoBehaviour
             // ** 생성된 노드의 위치를 랜덤하게 셋팅한다.
             // ** 현재는 (-5 ~ +5) 사이값으로 생성한다.
             // ** 이때, Y좌표에 값은 변경 시키지 않는다. 
-            NodeObj.transform.position = new Vector3(
-                Random.Range(-75.0f, 25.0f), 0.0f, Random.Range(-75.0f, 25.0f));
+            NodeObj.transform.position = new Vector3(Random.Range(-20.0f,50.0f), 0.0f, Random.Range(10.0f, 77.0f));
 
             float Distance = 1000.0f;
 

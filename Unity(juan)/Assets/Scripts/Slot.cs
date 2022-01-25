@@ -30,6 +30,13 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     public bool IsFull { get { return _isFull; } }
     // Start is called before the first frame update
 
+    Vector3 pos;
+
+    private void Start()
+    {
+        pos = this.transform.position;
+    }
+
     public void AddItem(Item_Weapon item)
     {
         _isFull = true;
@@ -86,7 +93,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     public void OnPointerClick(PointerEventData eventData)
     {
 
-        PlayerInventory.Instance._ui.HideToopTip();
+        ToolTip_UI_Manager.Instance.HideToolTip();
 
         switch (_type)
         {
@@ -94,10 +101,11 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
 
                 _type = Item_Type.Null;
                 _isFull = false;
-                _weapon = null;
-                this.GetComponent<Image>().sprite = _emptyImage;
                 PlayerInventory.Instance.EquipWeapon(_weapon);
+                
+                this.GetComponent<Image>().sprite = _emptyImage;
 
+                _weapon = null;
                 break;
 
             case Item_Type.Material:
@@ -110,7 +118,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
                 this.GetComponent<Image>().sprite = _emptyImage;
                 _type = Item_Type.Null;
                 _isFull = false;
-                _potion = null;
+                
 
                 PlayerDataManager.Instance.Player._CurrHp += _potion.HpCount;
 
@@ -118,7 +126,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
                 {
                     PlayerDataManager.Instance.Player._CurrHp = PlayerDataManager.Instance.Player._MaxHp;
                 }
-
+                _potion = null;
                 break;
 
             case Item_Type.Soul:
@@ -145,8 +153,6 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Vector3 pos = this.transform.position;
-
         switch (_type)
         {
             case Item_Type.Weapon:
@@ -154,9 +160,10 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
                 {
                     Debug.Log("해당 슬롯에 무기에 대한 정보가 없습니다.");
                 }
-               
 
-                PlayerInventory.Instance._ui.ShowToolTip(pos, _weapon);
+
+                ToolTip_UI_Manager.Instance.ShowToolTip(pos, _weapon);
+
 
                 break;
 
@@ -165,7 +172,8 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
                 {
                     Debug.Log("해당 슬롯에 재료에 대한 정보가 없습니다.");
                 }
-                PlayerInventory.Instance._ui.ShowToolTip(pos, _material);
+                ToolTip_UI_Manager.Instance.ShowToolTip(pos, _material);
+
 
                 break;
 
@@ -175,11 +183,11 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
                     Debug.Log("해당 슬롯에 소울에 대한 정보가 없습니다.");
                 }
 
-                PlayerInventory.Instance._ui.ShowToolTip(pos, _soul);
+                ToolTip_UI_Manager.Instance.ShowToolTip(pos, _soul);
                 break;
 
             case Item_Type.Equip:
-                PlayerInventory.Instance._ui.ShowToolTip(pos, _weapon);
+                ToolTip_UI_Manager.Instance.ShowToolTip(pos, _weapon);
 
 
                 break;
@@ -193,8 +201,6 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        PlayerInventory.Instance._ui.HideToopTip();
+        ToolTip_UI_Manager.Instance.HideToolTip();
     }
-
-    
 }

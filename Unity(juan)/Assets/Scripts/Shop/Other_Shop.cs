@@ -30,14 +30,14 @@ public class Other_Shop : MonoBehaviour
         _price.text = ""+_Items[index].Price;
         _explain.text = _Items[index].Explain;
 
-
+        _product.GetComponent<Image>().sprite = _Items[index]._itemSprite;
     }
 
     public void Buy()
     {
         if (_Items[index].Price > PlayerDataManager.Instance.Player._Gold)
         {
-            PlayerInventory.Instance._enoughGold_UI.SetActive(true);
+            Message_UI_Manager.Instance._enought_Gold.SetActive(true);
         }
         else
         {

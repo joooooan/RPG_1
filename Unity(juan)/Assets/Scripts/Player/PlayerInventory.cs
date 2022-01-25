@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.IO;
 using Newtonsoft.Json;
 using System;
@@ -15,9 +16,7 @@ public class PlayerInventory : MonoBehaviour
     public PlayerController _player = null;
 
     [SerializeField]
-    GameObject Ui;
-
-    
+    Text _gold;
 
     [SerializeField]
     GameObject _weaponSlot;
@@ -28,12 +27,7 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField]
     GameObject _equipSlot;
 
-    int _weaponSlot_Size;
-    int _soulSlot_Size;
-    int _materialSlot_Size;
-
-    public GameObject _enoughGold_UI = null;
-    public Inventory_Ui _ui = null;
+    int _sizeTab;
 
     private string _weaponName = "";
     public string Equipment_WeaponName { get { return _weaponName; } set { _weaponName = value; } }
@@ -43,14 +37,8 @@ public class PlayerInventory : MonoBehaviour
         if (null == instance)
         {
             instance = this;
-
-            _weaponSlot_Size = _weaponSlot.transform.childCount;
-            _soulSlot_Size = _soulSlot.transform.childCount;
-            _materialSlot_Size = _materialSlot.transform.childCount;
-
+            _sizeTab = 16;
             _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-
-            _ui = Ui.GetComponent<Inventory_Ui>();
 
             DontDestroyOnLoad(this.gameObject);
 
@@ -73,10 +61,15 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        Gold_Update();
+    }
+
     public void AddInven(Item_Weapon weapon)
     {
        
-        for (int i=0; i < _weaponSlot_Size; i++)
+        for (int i=0; i < _sizeTab; i++)
         {
            if(!_weaponSlot.transform.GetChild(i).GetComponent<Slot>().IsFull)
            { 
@@ -92,9 +85,9 @@ public class PlayerInventory : MonoBehaviour
     }
     public void AddInven(Item_Potion material)
     {
-        for (int i = 0; i < _weaponSlot_Size; i++)
+        for (int i = 0; i < _sizeTab; i++)
         {
-            if (!_weaponSlot.transform.GetChild(i).GetComponent<Slot>().IsFull)
+            if (!_materialSlot.transform.GetChild(i).GetComponent<Slot>().IsFull)
             {
                 _materialSlot.transform.GetChild(i).GetComponent<Slot>().AddItem(material);
 
@@ -108,7 +101,7 @@ public class PlayerInventory : MonoBehaviour
     }
     public void AddInven(GameObject material)
     {
-        for (int i = 0; i < _weaponSlot_Size; i++)
+        for (int i = 0; i < _sizeTab; i++)
         {
             if (!_weaponSlot.transform.GetChild(i).GetComponent<Slot>().IsFull)
             {
@@ -125,7 +118,7 @@ public class PlayerInventory : MonoBehaviour
     public void AddInven(Item_Soul soul)
     {
 
-        for (int i = 0; i < _weaponSlot_Size; i++)
+        for (int i = 0; i < _sizeTab; i++)
         {
             if (!_weaponSlot.transform.GetChild(i).GetComponent<Slot>().IsFull)
             {
@@ -140,6 +133,8 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
+
+    //장비 장착
     public void EquipWeapon(Item_Weapon weapon)
     {
         //Debug.Log(PlayerDataManager.Instance.Player._isEquip);
@@ -177,6 +172,7 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
+    //장비 장착 해제
     public void ReleaseWeapon(Item_Weapon weapon)
     {
 
@@ -187,6 +183,17 @@ public class PlayerInventory : MonoBehaviour
             Destroy(_weapon.transform.GetChild(0).gameObject);
         }
         _player.onEquip(false);
+
+    }
+
+    //소지금 갱신
+    public void Gold_Update()
+    {
+        _gold.text = ""+PlayerDataManager.Instance.Player._Gold;
+    }
+
+    public void DisableUI()
+    {
 
     }
 

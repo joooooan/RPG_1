@@ -47,8 +47,8 @@ public class PlayerController : MonoBehaviour
         _movement = this.GetComponentInChildren<Movement>();
         _animator = this.GetComponent<Animator>();      
 
-        _currTime = Mathf.Infinity;        
-
+        _currTime = Mathf.Infinity;
+        _isAttack = false;
         _isDelay = false;
 
         _dir = Vector3.zero;
@@ -77,13 +77,19 @@ public class PlayerController : MonoBehaviour
         float _h = Input.GetAxis("Horizontal");
         float _v = Input.GetAxis("Vertical");
 
-        Vector3 _dir = new Vector3(_h, 0, _v);
+        _dir = new Vector3(_h, 0, _v);
+
+        
 
         _animator.SetFloat("Speed", _dir.magnitude);
 
         if (!(_h == 0 && _v == 0))
         {
+
+            if (_attackCollsion._isAttack) _dir = Vector3.zero;
+
             _movement.MoveTo(_dir, _playerSpeed, _rotateSpeed);
+
         }
         else
         {
@@ -99,6 +105,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {
+                _attackCollsion._isAttack = true;
                 _animator.SetTrigger("isComboAttack");
             }
             else
@@ -190,6 +197,7 @@ public class PlayerController : MonoBehaviour
     private void TakeDamage() //공격판정 박스를 활성화 하는 함수
     {
         _attackCollsion.gameObject.SetActive(true);
+        
         _animator.ResetTrigger("isComboAttack");
     }
 
@@ -203,7 +211,9 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.I))
         {
-            PlayerInventory.Instance._ui.OnInventory();
+
+            Debug.Log("인벤토리 오픈");
+            PopupUI_Manager.Instance.Open_PopupUi(PopupUI_Manager.Instance._inventoryPopup);
         }
     }
 

@@ -8,7 +8,11 @@ using System;
 public class PlayerDataManager : MonoBehaviour
 {
     private static PlayerDataManager instance = null;
+
     PlayerData _player;
+
+    public Vector3 _currPlayerPosition;
+
     public PlayerData Player {get { return _player;  } set { _player = value; } }
 
     private void Awake()
@@ -17,6 +21,7 @@ public class PlayerDataManager : MonoBehaviour
         {
             instance = this;
 
+            _currPlayerPosition = Vector3.zero;
             LoadPlayerDataToJson(); //Player 데이터를 로드.
 
             DontDestroyOnLoad(this.gameObject); //이 GameObject를 싱글톤화.
@@ -40,7 +45,7 @@ public class PlayerDataManager : MonoBehaviour
         }
     }
        
-    public PlayerData LoadPlayerDataToJson() //Player 데이터를 지정된 경로에서 Json 파일의 정보를 로드.
+    public void LoadPlayerDataToJson() //Player 데이터를 지정된 경로에서 Json 파일의 정보를 로드.
     {
         string path = Path.Combine(Application.dataPath, "PlayerData.json");
         
@@ -60,7 +65,7 @@ public class PlayerDataManager : MonoBehaviour
 
             Debug.Log("파일 확인 로드 중");
 
-            return _player;
+            
         }
         else
         {
@@ -69,7 +74,6 @@ public class PlayerDataManager : MonoBehaviour
 
             Debug.Log("파일 없음 생성 중");
 
-            return _player;
         }
                
     }
@@ -88,6 +92,11 @@ public class PlayerDataManager : MonoBehaviour
         
         //저장
         File.WriteAllText(path, format);
+    }
+
+    private void InitData()
+    {
+        
     }
 
 }

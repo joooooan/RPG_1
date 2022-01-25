@@ -36,7 +36,7 @@ public class Soul_Shop : MonoBehaviour
     {
         if (_Items[index].Price > PlayerDataManager.Instance.Player._Gold)
         {
-            PlayerInventory.Instance._enoughGold_UI.SetActive(true);
+            Message_UI_Manager.Instance._enought_Gold.SetActive(true);
         }
         else
         {
