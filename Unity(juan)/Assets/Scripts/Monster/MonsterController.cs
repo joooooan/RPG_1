@@ -118,6 +118,12 @@ public class MonsterController : Stat
 
         MonsterState();
         HandleHp();
+
+        if(_isAttacking)
+        {
+            
+        }
+            
     }
 
     void MonsterState()
@@ -261,6 +267,7 @@ public class MonsterController : Stat
 
         if (Vector2.Distance(currPoint, targetPoint) < 2)
         {
+            
             _agent.isStopped = true;
             _monsterState = State.Attack;
         }
@@ -302,7 +309,7 @@ public class MonsterController : Stat
             Invoke("ObjectAdd", 1.0f);
             _monsterState = State.Dead;
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(5.0f);
         }
         else 
         {
@@ -360,10 +367,18 @@ public class MonsterController : Stat
     {
         if (_isAttacking)
         {
+            Vector3 dir = _searchbox.GetPlayer().transform.position - this.transform.position;
+            dir.y = 0;
+            dir.Normalize();
 
+            this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(dir), 10.0f * Time.deltaTime);
         }
         else
         {
+
+
+
+
             StartCoroutine(Attacking());
         }
     }
@@ -421,12 +436,11 @@ public class MonsterController : Stat
 
     IEnumerator Attacking()
     {
-        
+
         _isAttacking = true;
         _currTime = 0;
         Reset();
         _animator.SetTrigger("doAttack");
-
         float attackSpeed = WeaponManager.Instance.GetWeaponData(_weapon.GetGameObject().name, "AttackSpeed");
 
         yield return new WaitForSeconds(attackSpeed);

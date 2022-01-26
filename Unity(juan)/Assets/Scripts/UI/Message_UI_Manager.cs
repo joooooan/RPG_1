@@ -11,8 +11,6 @@ public class Message_UI_Manager : MonoBehaviour
 
     private static Message_UI_Manager instance = null;
 
-    private int _index;
-
     private void Awake()
     {
         if (null == instance)

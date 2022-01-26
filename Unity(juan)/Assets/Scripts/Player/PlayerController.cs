@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
@@ -154,10 +155,12 @@ public class PlayerController : MonoBehaviour
         _animator.SetTrigger("isDamaged");
         int damage = WeaponManager.Instance.GetWeaponData(weaponName, "Damage") + StatManager.Instance.GetMonsterStat(monsterName, "STR");
         damage -= PlayerDataManager.Instance.Player._Def;
+        Message_UI_Manager.Instance._DamageText.GetComponent<Text>().text = damage.ToString();
         if (damage <= 0)
         {
             damage = 0;
         }
+
         PlayerDataManager.Instance.Player._CurrHp -= damage;
 
         if(PlayerDataManager.Instance.Player._CurrHp <=0 )
@@ -167,7 +170,7 @@ public class PlayerController : MonoBehaviour
             PlayerDataManager.Instance.Player._isDead = true;
             _animator.SetTrigger("isDead");
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(5.0f);
         }
         else
         {
