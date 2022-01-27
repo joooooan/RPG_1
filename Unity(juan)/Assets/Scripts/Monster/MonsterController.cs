@@ -284,6 +284,9 @@ public class MonsterController : Stat
         _isDelay = true;
         int damage = WeaponManager.Instance.GetWeaponData(name, "Damage") +  PlayerDataManager.Instance.Player._Str;
         damage -= _def;
+
+        Instantiate(Message_UI_Manager.Instance._DamageText, this.transform.position, Message_UI_Manager.Instance._DamageText.transform.rotation);
+
         if (damage <= 0)
         {
             damage = 0;

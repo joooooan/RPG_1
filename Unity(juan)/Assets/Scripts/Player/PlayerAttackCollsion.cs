@@ -24,6 +24,8 @@ public class PlayerAttackCollsion : MonoBehaviour
                 other.GetComponent<MonsterController>().TakeDamage("Hand");
             }
             
+
+
         }
     }
 
