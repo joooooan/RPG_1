@@ -79,5 +79,37 @@ public class StatManager : MonoBehaviour
         return 0;
     }
 
+    public string GetMonsterKoreanName(string monsterName)
+    {
+        int number = 0;
+
+        for (int i = 0; i < _monsterData.Count; i++)
+        {
+            if ((string)_monsterData[i]["Name"] == monsterName)
+            {
+                number = i;
+                break;
+            }
+        }
+
+        switch(number)
+        {
+            case 0:
+                return "스켈레톤(노예)";
+
+            case 1:
+                return "스켈레톤(용병)";
+
+            case 2:
+                return "스켈레톤(도적)";
+
+            case 3:
+                return "스켈레톤(기사)";
+
+        }
+
+        return "이름 없음(에러)";
+
+    }
 
 }

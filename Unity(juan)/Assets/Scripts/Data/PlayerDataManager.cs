@@ -11,7 +11,9 @@ public class PlayerDataManager : MonoBehaviour
 
     PlayerData _player;
 
-    public Vector3 _currPlayerPosition;
+
+    public bool _isRest = false;
+
 
     public PlayerData Player {get { return _player;  } set { _player = value; } }
 
@@ -21,7 +23,6 @@ public class PlayerDataManager : MonoBehaviour
         {
             instance = this;
 
-            _currPlayerPosition = Vector3.zero;
 
             DontDestroyOnLoad(this.gameObject); //이 GameObject를 싱글톤화.
 

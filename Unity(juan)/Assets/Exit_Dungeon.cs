@@ -8,6 +8,7 @@ public class Exit_Dungeon : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            PlayerDataManager.Instance._isRest = false;
             LoadManager.LoadScene("HomeScene");
         }
     }

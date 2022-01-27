@@ -17,15 +17,26 @@ public class PlayerAttackCollsion : MonoBehaviour
         {
             if(PlayerDataManager.Instance.Player._isEquip)
             {
-                other.GetComponent<MonsterController>().TakeDamage(PlayerInventory.Instance.Equipment_WeaponName);
+                if(other.GetComponent<MonsterController>()._isDelay)
+                {
+
+                }
+                else
+                {
+                    other.GetComponent<MonsterController>().Attacked(PlayerInventory.Instance.Equipment_WeaponName);
+                }
             }
             else
             {
-                other.GetComponent<MonsterController>().TakeDamage("Hand");
+                if (other.GetComponent<MonsterController>()._isDelay)
+                {
+
+                }
+                else
+                {
+                    other.GetComponent<MonsterController>().Attacked("Hand");
+                }
             }
-            
-
-
         }
     }
 

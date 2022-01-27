@@ -46,14 +46,18 @@ public class MonsterController : Stat
 
     private GameObject _way = null;
 
+    [SerializeField]
+    private Text _name;
+
     private int _index;
 
     private int _minEXP;
     private int _maxEXP;
     private int _exp;
 
-    private bool _isDelay;
+    public bool _isDelay;
     private bool _isAttacking;
+    private bool _isDead;
 
     private NavMeshAgent _agent;
 
@@ -85,6 +89,7 @@ public class MonsterController : Stat
         _currTime = 0;
         _waitTime = 0;
         _isDelay = false;
+        _isDead = false;
         _isAttacking = false;
 
         if("MonsterSource(Clone)" != this.gameObject.name)
@@ -98,6 +103,8 @@ public class MonsterController : Stat
             _minEXP = StatManager.Instance.GetMonsterStat(this.gameObject.name, "MinEXP");
             _maxEXP = StatManager.Instance.GetMonsterStat(this.gameObject.name, "MaxEXP");
             _exp = Random.Range(_minEXP, _maxEXP);
+
+            _name.text = StatManager.Instance.GetMonsterKoreanName(this.gameObject.name);
             SetWayPoint();
         }
 
@@ -232,14 +239,10 @@ public class MonsterController : Stat
     private void Dead()
     {
 
-
-
     }
 
     private void ObjectAdd()
     {
-
-
         MonsterManager monstermanager = GameObject.FindGameObjectWithTag("MonsterManager").GetComponent<MonsterManager>();
         monstermanager.MonsterDisable(this.gameObject);
     }
@@ -250,14 +253,78 @@ public class MonsterController : Stat
         _animator.SetBool("isWalk", false);
     }
 
-    public void TakeDamage(string name)
+    public void Attacked(string name)
     {
+        if (_isDead) return;
+
+        StartCoroutine(Damage(name));
+        
+    }
+
+    IEnumerator Damage(string name)
+    {
+
+        int damage = WeaponManager.Instance.GetWeaponData(name, "Damage") + PlayerDataManager.Instance.Player._Str; 
+        //무기 이름 , Player의 공격력 만큼 데미지 증가.
+
+        damage -= _def; 
+        //몬스터의 방어력 만큼 데미지 감소.
+
+        
+        if (damage <= 0) damage = 0;
+        //데미지가 마이너스 일 경우 0으로 처리.
+
+        GameObject Text = Instantiate(Message_UI_Manager.Instance._DamageText, this.transform.position + new Vector3(0, 2.0f, 0), Message_UI_Manager.Instance._DamageText.transform.rotation);
+        Text.GetComponent<Damage_Borad>().damage = damage;
+        //몬스터가 받은 데미지 텍스트 생성.
+
+        if(_isDelay)
+        {
+
+        }
+        else
+        {
+            _currhp -= damage;
+
+            _isDelay = true;
+            //데미지 적용.
+
+            if (_currhp <= 0)
+            {
+                _animator.SetTrigger("isDeath");
+
+                PlayerDataManager.Instance.PlusExp(_exp);
+                PlayerDataManager.Instance.Player._Gold += StatManager.Instance.GetMonsterStat(this.gameObject.name, "Gold");
+                //Player 보상 처리.
+
+                Invoke("ObjectAdd", 5.0f);
+
+                _isDead = true;
+                //비활성화 시키고 몬스터를 List에 넣음.
+
+                _monsterState = State.Dead;
+                //현재 체력이 마이너스가 됐을 경우 상태를 죽음으로 변환.
+
+                yield return new WaitForSeconds(5.0f);
+
+            }
+            else
+            {
+                Reset();
+                _agent.isStopped = true;
+                _animator.ResetTrigger("doAttack");
+                _animator.SetTrigger("isHit");
+
+                yield return new WaitForSeconds(_hitDelay);
+
+                _monsterState = State.Damaged;
+                _isDelay = false;
+                _agent.isStopped = false;
+            }
+        }
         
 
-        if (!_isDelay)
-        {
-            StartCoroutine(Damage(name));
-        }
+        
     }
 
     private void Damaged()
@@ -279,55 +346,7 @@ public class MonsterController : Stat
         }
     }
 
-    IEnumerator Damage(string name)
-    {
-        _isDelay = true;
-        int damage = WeaponManager.Instance.GetWeaponData(name, "Damage") +  PlayerDataManager.Instance.Player._Str;
-        damage -= _def;
-
-        Instantiate(Message_UI_Manager.Instance._DamageText, this.transform.position, Message_UI_Manager.Instance._DamageText.transform.rotation);
-
-        if (damage <= 0)
-        {
-            damage = 0;
-        }
-        else
-        {
-            Reset();
-            _agent.isStopped = true;
-            _animator.SetTrigger("isHit");
-
-            Debug.Log("몬스터가 공격 당함 (피해 : " + damage + ")");
-        }
-
-        _currhp -= damage;
-
-        if (_currhp <= 0)
-        {
-            _animator.SetTrigger("isDeath");
-
-            PlayerDataManager.Instance.PlusExp(_exp);
-            PlayerDataManager.Instance.Player._Gold += StatManager.Instance.GetMonsterStat(this.gameObject.name, "Gold");
-
-            Invoke("ObjectAdd", 1.0f);
-            _monsterState = State.Dead;
-
-            yield return new WaitForSeconds(5.0f);
-        }
-        else 
-        {
-
-            
-
-
-            yield return new WaitForSeconds(_hitDelay);
-
-            _monsterState = State.Damaged;
-
-            _isDelay = false;
-            _agent.isStopped = false;
-        }
-    }
+    
 
     private void SetWayPoint()
     {
@@ -368,6 +387,8 @@ public class MonsterController : Stat
 
     private void Attack()
     {
+        if (_isDead) return;
+
         if (_isAttacking)
         {
             Vector3 dir = _searchbox.GetPlayer().transform.position - this.transform.position;
@@ -396,9 +417,16 @@ public class MonsterController : Stat
         }
         else
         {
-            Reset();
-            _agent.isStopped = true;
-            _monsterState = State.MissTarget;
+            _waitTime += Time.deltaTime;
+
+            if(_waitTime > 2.0f)
+            {
+                _waitTime = 0;
+                Reset();
+                _agent.isStopped = true;
+                _monsterState = State.MissTarget;
+            }
+
         }
     }
 
@@ -494,7 +522,6 @@ public class MonsterController : Stat
     {
         _hpbar.value = Mathf.Lerp(_hpbar.value, (float)_currhp / (float)_hp,Time.deltaTime*10);
     }
-
 
     
 

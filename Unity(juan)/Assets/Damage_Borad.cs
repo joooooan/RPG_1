@@ -7,14 +7,13 @@ public class Damage_Borad : MonoBehaviour
 {
     Text text;
 
-
-    float random;
+    public int damage;
 
     private void Start()
     {
         text = this.GetComponentInChildren<Text>();
+        setTextDamage(damage);
         StartCoroutine(Disable());
-
     }
 
     void Update()
@@ -24,24 +23,17 @@ public class Damage_Borad : MonoBehaviour
 
     }
 
-    public void setTextColor(GameObject gameObject)
+    public void setTextDamage(int damage)
     {
-        if(gameObject.tag == "Player")
-        {
-            text.color = Color.red;
-        }
-        else
-        {
-            text.color = Color.green;
-        }
-        
+        Debug.Log(damage);
+        text.text = damage.ToString();
     }
 
     IEnumerator Disable()
     {
         yield return new WaitForSeconds(0.1f);
 
-        Color color = text.color;
+;        Color color = text.color;
 
         for(float i = 1.0f; i >= 0.0f; i -= 0.12f)
         {

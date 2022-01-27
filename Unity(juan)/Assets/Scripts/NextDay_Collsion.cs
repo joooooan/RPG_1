@@ -15,7 +15,9 @@ public class NextDay_Collsion : MonoBehaviour
             PlayerDataManager.Instance.Player._CurrHp = PlayerDataManager.Instance.Player._MaxHp;
             PlayerDataManager.Instance.Player._CurrMp = PlayerDataManager.Instance.Player._MaxMp;
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            PlayerDataManager.Instance._isRest = true;
+
+
         }
     }
 

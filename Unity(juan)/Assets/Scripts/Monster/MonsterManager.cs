@@ -112,6 +112,7 @@ public class MonsterManager : MonoBehaviour
 
     public void MonsterDisable(GameObject monster)
     {
+        _cuurTime = 0;
         _monsterPool.Add(monster);
         monster.SetActive(false);
     }

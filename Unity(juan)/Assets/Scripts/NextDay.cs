@@ -8,8 +8,13 @@ public class NextDay : MonoBehaviour
     [SerializeField]
     GameObject Day_Collider;
 
+    
+
     private void OnTriggerEnter(Collider other)
     {
+        if (PlayerDataManager.Instance._isRest) return;
+
+
         if (other.tag == "Player")
         {
             Day_Collider.SetActive(true);

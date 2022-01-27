@@ -134,28 +134,24 @@ public class PlayerController : MonoBehaviour
 
     public void Damage(string monsterName,string weaponName )
     {
-        if(_isDead)
-        {
+        if (_isDead) return;
 
-        }
 
-        if (!_isDelay)
-        {
-            _isDelay = true;
-            StartCoroutine(Damaged(monsterName, weaponName));
-        }
-        else
-        {
-            Debug.Log("딜레이 중");
-        }
+        if (_isDelay) return;
+
+
+        _isDelay = true;
+        StartCoroutine(Damaged(monsterName, weaponName));
+
     }
 
     IEnumerator Damaged(string monsterName, string weaponName)
     {
         _animator.SetTrigger("isDamaged");
+
         int damage = WeaponManager.Instance.GetWeaponData(weaponName, "Damage") + StatManager.Instance.GetMonsterStat(monsterName, "STR");
         damage -= PlayerDataManager.Instance.Player._Def;
-        Message_UI_Manager.Instance._DamageText.GetComponent<Text>().text = damage.ToString();
+
         if (damage <= 0)
         {
             damage = 0;
