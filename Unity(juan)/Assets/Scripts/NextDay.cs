@@ -14,7 +14,6 @@ public class NextDay : MonoBehaviour
     {
         if (PlayerDataManager.Instance._isRest) return;
 
-
         if (other.tag == "Player")
         {
             Day_Collider.SetActive(true);

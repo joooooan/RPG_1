@@ -8,6 +8,7 @@ public class Menu : MonoBehaviour
     public void ReTurnTitle()
     {
         LoadManager.LoadScene("TitleScene");
+        Destroy(PlayerManager.Instance.gameObject);
     }
     public void Option()
     {
