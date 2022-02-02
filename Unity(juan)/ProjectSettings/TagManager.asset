@@ -17,6 +17,7 @@ TagManager:
   - Soul_Product
   - Weapon_Product
   - Enough_Message
+  - Dungeon_Tile
   layers:
   - Default
   - TransparentFX

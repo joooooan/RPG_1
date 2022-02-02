@@ -57,6 +57,7 @@
     <Compile Include="Assets\Damage_Borad.cs" />
     <Compile Include="Assets\Enough_Data.cs" />
     <Compile Include="Assets\Exit_Dungeon.cs" />
+    <Compile Include="Assets\GameOverManager.cs" />
     <Compile Include="Assets\Packages\PolygonFantasyHeroCharacters\Scripts\CharacterRandomizer.cs" />
     <Compile Include="Assets\Scripts\Camera\BillBorad.cs" />
     <Compile Include="Assets\Scripts\Camera\FollowCamera.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Assets\Scripts\WayPoint\Node.cs" />
     <Compile Include="Assets\Scripts\WayPoint\WayPointEditor.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponManager.cs" />
+    <Compile Include="Assets\SoundManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Packages\JsonDotNet\link.xml" />

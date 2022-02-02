@@ -5,17 +5,9 @@ using UnityEngine.EventSystems;
 
 public class Continue : MonoBehaviour, IPointerClickHandler
 {
-    public GameObject _text;
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(PlayerDataManager.Instance.LoadPlayerDataToJson())
-        {
-            LoadManager.LoadScene("HomeScene");
-        }
-        else
-        {
-            _text.SetActive(true);
-        }
+        LoadManager.LoadScene("HomeScene");
     }
 }

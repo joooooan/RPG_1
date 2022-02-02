@@ -33,12 +33,6 @@ public class MonsterController : Stat
     private float _limitTime;
 
     [SerializeField]
-    private int _minCount = 5;
-
-    [SerializeField]
-    private int _maxCount = 9;
-
-    [SerializeField]
     private float _monsterSpeed = 1;
 
     [SerializeField]
@@ -78,9 +72,6 @@ public class MonsterController : Stat
         _searchbox = this.transform.GetComponentInChildren<SearchBox>();
         _agent = this.GetComponent<NavMeshAgent>();
         _weapon = this.GetComponent<MeleeWarriorLeftHandIK>();
-
-
-
     }
 
     private void OnEnable()
@@ -355,13 +346,13 @@ public class MonsterController : Stat
             Destroy(_way.gameObject);
         }
 
+        GameObject map = GameObject.FindGameObjectWithTag("Dungeon_Tile");
+
         _way = new GameObject("Way Point"); //부모 객체 생성
         _way.AddComponent<WayPoint>(); //WayPoint Script  추가
         _waypoint = _way.GetComponent<WayPoint>(); //추가한 Script에 연결.
 
-        if (_maxCount - _minCount <= 0) _maxCount = _minCount; //실수로 _maxCount를 잘못 세팅 해놓을 경우 예외처리
-
-        int count = Random.Range(_minCount, _maxCount);
+        int count = 3;
 
         for (int i = 0; i < count; i++)
         {
